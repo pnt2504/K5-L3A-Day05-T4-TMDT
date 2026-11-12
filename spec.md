@@ -1,6 +1,6 @@
 # LAB5 — Track 4: Thương mại điện tử
 
-**Nhóm:** K5-L3A-Day05-T4-TMDT · **Lớp:** L3A · **Bàn / zone:** __________
+**Nhóm:** K5-L3A-Day05-T4-TMDT · **Lớp:** L3A · **Bàn / zone:** A7
 
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
