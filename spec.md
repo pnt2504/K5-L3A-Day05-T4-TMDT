@@ -4,9 +4,9 @@
 
 | Thành viên | Họ và tên | Mã học viên | Phần việc được phân công |
 |---|---|---|---|
-| A | Phan Nhật Trường | 2A202603459 | Phụ trách phạm vi, bảng kịch bản và lời thoại khi AI thiếu căn cứ (§1–§3). Khi demo, giới thiệu ca tem khớp và giải thích vì sao tem L chưa đủ. |
-| B | Dương Tuấn Hưng | 2A202603416 | Phụ trách mức tự chủ của 5 tool, điều kiện duyệt và kiểm tra luồng người bán, nhân viên (§4, §6). Khi demo, chỉ ra nút bị khóa và giải thích ai chịu thiệt nếu quyết định sai. |
-| C | Nguyễn Ngọc Minh Đức | 2A202603421 | Phụ trách đối chiếu prototype, ảnh minh chứng và kịch bản demo (§5, §7). Khi demo, bấm ca nghi hàng giả và trình bày đường chuyển chuyên trách. |
+| 1 | Phan Nhật Trường | 2A202603459 | Phụ trách phạm vi, bảng kịch bản và lời thoại khi AI thiếu căn cứ (§1–§3). Khi demo, giới thiệu ca tem khớp và giải thích vì sao tem L chưa đủ. |
+| 2 | Dương Tuấn Hưng | 2A202603416 | Phụ trách mức tự chủ của 5 tool, điều kiện duyệt và kiểm tra luồng người bán, nhân viên (§4, §6). Khi demo, chỉ ra nút bị khóa và giải thích ai chịu thiệt nếu quyết định sai. |
+| 3 | Nguyễn Ngọc Minh Đức | 2A202603421 | Phụ trách đối chiếu prototype, ảnh minh chứng và kịch bản demo (§5, §7). Khi demo, bấm ca nghi hàng giả và trình bày đường chuyển chuyên trách. |
 
 ## §1. Lát cắt và phạm vi
 
