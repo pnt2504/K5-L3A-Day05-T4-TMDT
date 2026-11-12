@@ -3,309 +3,539 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <title>TMDT · Trợ lý khiếu nại công bằng</title>
-  <style id="lab-styles">
-:root{--ink:#183634;--muted:#657875;--bg:#f5f6f2;--line:#dfe7e1;--teal:#156b60;--pale:#e8f2ec;--orange:#d66a39;--warn:#8d5e17;--warn-bg:#fff4df;--red:#9c4236;--shadow:0 8px 28px #163d3410}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Segoe UI",Arial,sans-serif}button,input,select,textarea{font:inherit}button,select{cursor:pointer}button{border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);padding:10px 15px;font-weight:600;transition:background .15s,transform .15s}button:hover:not(:disabled){background:var(--pale);transform:translateY(-1px)}button:disabled{cursor:not-allowed;opacity:.45}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #e29847;outline-offset:3px}[hidden]{display:none!important}.lab-banner{padding:7px 5%;background:#173f39;color:#e3eee5;font-size:11px;font-weight:600;letter-spacing:.6px;display:flex;justify-content:space-between}.lab-banner span{font-weight:400;letter-spacing:0}.site-header{display:flex;align-items:center;justify-content:space-between;padding:18px 5%;background:#fff;border-bottom:1px solid var(--line);gap:24px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:22px;font-weight:750;line-height:1.1}.brand-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:var(--teal);color:#fff;font-size:32px;font-weight:600}.brand small{display:block;font-size:8px;letter-spacing:1.6px;margin-top:6px;font-weight:650}.view-tabs{display:flex;gap:8px}.view-tabs button{border:none;background:transparent;color:var(--muted);font-size:11px}.view-tabs button span{font-size:14px;margin-left:7px}.view-tabs .active{background:var(--pale);color:var(--teal)}.local-badge{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:7px}.local-badge i{width:7px;height:7px;background:#488b61;border-radius:50%}main{max-width:1250px;margin:auto;padding:34px 28px 40px}.intro{display:flex;justify-content:space-between;gap:30px;align-items:center;margin-bottom:30px}.eyebrow{color:var(--teal);font-size:10px;font-weight:750;letter-spacing:1.5px;margin:0 0 10px}h1{font-size:37px;line-height:1.2;letter-spacing:-1.3px;margin:0}h1 span{font-weight:400;color:#68827a}.intro-copy{font-size:13px;color:var(--muted);margin:14px 0 0}.case-picker{width:330px;flex-shrink:0;padding:17px 20px;background:white;border:1px solid var(--line);border-radius:16px}.case-picker>label{display:block;font-size:11px;color:var(--muted);margin-bottom:7px}select{width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px;color:var(--ink)}.case-actions{display:flex;justify-content:space-between;align-items:center;margin-top:10px}.text-button{padding:0;border:0;background:transparent;color:var(--teal);font-size:11px}.annotation-toggle{font-size:11px;color:var(--muted);display:flex;gap:4px;align-items:center}.case-picker small{display:block;margin-top:9px;font-size:10px;color:var(--muted)}.buyer-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.9fr);gap:22px;align-items:start}.card{border:1px solid var(--line);background:#fff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden}.card-head{padding:17px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}.card-head h2{font-size:15px;margin:0}.card-head small{font-size:11px;color:var(--muted)}.assistant-avatar{background:var(--pale);border-radius:12px;width:38px;height:38px;display:grid;place-items:center;font-size:17px;color:var(--teal);font-weight:700}.assistant-title{display:flex;gap:10px;align-items:center}.assistant-title strong{display:block;font-size:13px}.assistant-title small{display:block;font-size:10px;color:var(--muted)}.pill{display:inline-flex;align-items:center;gap:5px;border-radius:30px;background:var(--pale);color:var(--teal);padding:4px 9px;font-size:10px;font-weight:700}.pill.warn{background:var(--warn-bg);color:var(--warn)}.pill.neutral{background:#f0f2ef;color:#66746e}.chat-body{padding:22px;display:flex;flex-direction:column;gap:18px;min-height:230px}.bubble{border-radius:14px;padding:12px 15px;max-width:94%;font-size:13px}.bubble.me{background:#e9eeeb;align-self:flex-end;border-bottom-right-radius:3px}.bubble.ai{background:#f8faf7;border:1px solid var(--line);border-top-left-radius:3px}.bubble small{display:block;color:var(--muted);font-size:10px;margin-bottom:6px}.bubble p{margin:9px 0 0}.next-step{border-left:3px solid #86b39a;padding-left:10px;margin-top:12px;font-size:12px}.chat-form{padding:15px 22px;border-top:1px solid var(--line);display:flex;gap:8px}.chat-form input{min-width:0;flex:1;background:#f7f9f6;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12px}.chat-form button{font-size:12px}.chat-actions{padding:0 22px 18px;display:flex;flex-wrap:wrap;gap:8px}.primary{background:var(--teal);border-color:var(--teal);color:white}.primary:hover:not(:disabled){background:#105349}.secondary{background:#fff;color:var(--teal);border-color:#b4cfc1}.danger{color:var(--red);border-color:#e3c1bc}.small{padding:7px 10px;font-size:11px}.side-stack{display:grid;gap:17px}.card-pad{padding:20px 22px}.section-label{font-size:10px;letter-spacing:1px;color:var(--muted);margin:0 0 12px}.order-top{display:flex;gap:13px;align-items:center}.product-symbol{width:57px;height:64px;border-radius:12px;background:#e7ede3;display:grid;place-items:center;flex-shrink:0}.product-symbol svg{width:39px;height:39px}.order-top h3{font-size:14px;margin:0}.order-top p{font-size:11px;color:var(--muted);margin:3px 0}.order-top strong{font-size:14px}.deadline{background:#f5f7f1;padding:10px 12px;border-radius:9px;font-size:11px;margin-top:15px}.deadline strong{display:block;color:var(--teal)}.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.evidence{padding:12px;background:#f6f8f4;border:1px solid var(--line);border-radius:10px;font-size:12px}.evidence.original{border-color:#accdb6;background:#eef6ee}.evidence small{display:block;font-size:9px;color:var(--muted);margin-bottom:5px}.evidence em{display:block;font-size:10px;color:var(--muted);font-style:normal;margin-top:5px}.evidence.received{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:8px}.number{background:var(--orange);color:#fff;border-radius:50%;font-size:9px;font-weight:700;display:inline-grid;place-items:center;width:18px;height:18px;margin-right:4px;vertical-align:middle}.no-annotations .number{display:none}.note{font-size:11px;color:var(--muted);margin:11px 0 0}.timeline{padding:0;margin:0;list-style:none}.timeline li{display:flex;gap:12px;padding:8px 0;font-size:12px}.step-dot{margin-top:5px;flex:none;width:8px;height:8px;border-radius:50%;background:#cdd8d0}.step-dot.done{background:var(--teal)}.timeline small{display:block;color:var(--muted);font-size:10px}.state-strip{border:1px solid var(--line);border-radius:13px;background:#eef5ef;margin-bottom:18px;padding:12px 17px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px}.state-strip strong{display:block}.dossier-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:start}.role-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.role-bar h2{font-size:21px;margin:0;letter-spacing:-.5px}.role-buttons{display:flex;gap:5px}.role-buttons .active{background:var(--ink);color:white}.field-label{display:block;font-size:12px;font-weight:600;margin:13px 0 6px}.response-box{background:#f7f8f4;border-radius:10px;padding:13px;font-size:12px;margin:10px 0}.response-box strong{display:block;margin-bottom:3px}.warning-box{background:var(--warn-bg);color:#79561d;border:1px solid #eddbb4;padding:12px 14px;border-radius:10px;font-size:12px;margin:12px 0}.success-box{background:var(--pale);padding:14px;border-radius:10px;color:var(--teal);font-size:13px;margin:12px 0}.audit{max-height:290px;overflow:auto;padding-left:18px;margin:10px 0 0;font-size:11px}.audit li{padding:6px 3px;border-bottom:1px solid var(--line)}.audit small{display:block;color:var(--muted)}.review-check{display:flex;gap:8px;align-items:flex-start;font-size:12px;margin:12px 0}.review-check input{margin-top:5px;accent-color:var(--teal)}textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px;font-size:12px;resize:vertical;min-height:84px}.blockers{font-size:11px;color:var(--muted);padding-left:18px;margin:9px 0}.review-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.demo-panel{margin-top:24px;border:1px dashed #c6d3ca;border-radius:12px;color:var(--muted);font-size:11px;background:#f9faf7}.demo-panel summary{cursor:pointer;padding:12px 16px}.demo-content{padding:0 16px 16px}.demo-content p{margin:5px 0 12px}.demo-buttons{display:flex;gap:8px;margin:12px 0}.demo-buttons button{font-size:11px;padding:7px 10px}table{width:100%;border-collapse:collapse;font-size:11px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:8px;vertical-align:top}th{font-weight:600}.empty{padding:22px;font-size:13px;color:var(--muted)}footer{max-width:1194px;margin:0 auto;padding:20px 0 28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:18px;font-size:10px;color:var(--muted)}footer>span:first-child{font-weight:750;letter-spacing:1px}#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#193e36;color:white;border-radius:12px;box-shadow:0 7px 30px #14392b30;padding:13px 20px;max-width:min(90vw,650px);font-size:13px;z-index:10;display:none}#toast.show{display:block}dialog{border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 90px #102e3330;max-width:490px;width:calc(100% - 30px);padding:25px}dialog::backdrop{background:#153c3460;backdrop-filter:blur(3px)}dialog h2{font-size:22px;line-height:1.3}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}.decision-detail{font-size:13px}.decision-detail strong{display:block;font-size:24px;margin:12px 0;color:var(--teal)}
-@media(min-width:1500px){main{padding-top:42px}.intro{margin-bottom:37px}.chat-body{min-height:280px}}@media(max-width:850px){.local-badge{display:none}h1{font-size:31px}.buyer-grid,.dossier-layout{grid-template-columns:1fr}.intro{align-items:flex-start}.case-picker{width:290px}.side-stack{grid-template-columns:1fr 1fr}.side-stack>.card:last-child{grid-column:1/-1}.lab-banner span{display:none}footer{margin:0 25px;flex-wrap:wrap}.card-head{padding:15px 17px}.chat-body{padding:17px}}@media(max-width:600px){body{font-size:14px}.site-header{padding:13px 16px;gap:10px}.brand{font-size:18px}.brand-icon{width:34px;height:34px}.brand small{font-size:6px}.view-tabs{gap:0}.view-tabs button{padding:8px;font-size:9px}.view-tabs button span{font-size:11px;margin-left:3px}main{padding:25px 15px}.intro{display:block}.case-picker{margin-top:20px;width:100%}h1{font-size:32px}.side-stack{grid-template-columns:1fr}.role-bar{align-items:flex-start;flex-direction:column}.card-pad{padding:17px}.state-strip{align-items:flex-start}.compare-grid{grid-template-columns:1fr}.evidence.received{grid-column:auto}.chat-form{padding:12px}.chat-actions{padding:0 12px 15px}.chat-form input{font-size:11px}.bubble{max-width:100%}.modal-actions{flex-direction:column}.lab-banner{font-size:9px}}
+  <title>Trợ lý khiếu nại · Lab T4</title>
+  <style>
+    :root { color-scheme: light; --ink: #172e2b; --muted: #526661; --line: #dce5df; --green: #155346; --paper: #f4f6f2; --cream: #fff4da; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.55 "Inter", "Segoe UI", sans-serif; }
+    header { background: #102d27; color: white; }
+    .bar, .layout { max-width: 1240px; margin: auto; padding-inline: 32px; }
+    .bar { min-height: 74px; display: flex; gap: 13px; align-items: center; }
+    .brand-icon { background: #d4edb4; color: #19392f; font-size: 21px; font-weight: 700; border-radius: 10px; padding: 4px 11px; }
+    .brand strong, .brand span { display: block; }
+    .brand span { color: #bed5c9; font-size: 12px; }
+    .bar .mode { margin-left: auto; color: #e2f1e9; border: 1px solid #557369; border-radius: 30px; padding: 4px 12px; font-size: 12px; }
+    .layout { display: grid; grid-template-columns: 275px minmax(0, 1fr); gap: 38px; padding-block: 38px 56px; }
+    aside { align-self: start; }
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: clamp(24px, 4vw, 35px); line-height: 1.1; letter-spacing: -.04em; margin: 5px 0 7px; }
+    h2 { font-size: 20px; line-height: 1.3; letter-spacing: -.02em; }
+    h3 { font-size: 15px; }
+    p + p { margin-top: 8px; }
+    .label { color: var(--green); font-size: 12px; font-weight: 750; letter-spacing: .09em; text-transform: uppercase; }
+    .muted, small { color: var(--muted); }
+    .case-list { display: grid; gap: 8px; margin: 15px 0 22px; }
+    button { font: inherit; cursor: pointer; border-radius: 9px; }
+    button:focus-visible { outline: 3px solid #126d83; outline-offset: 3px; }
+    .case { text-align: left; background: white; border: 1px solid var(--line); color: var(--ink); padding: 12px 13px; width: 100%; }
+    .case strong, .case small { display: block; }
+    .case[aria-pressed="true"] { background: #e7efe3; border-color: #599175; box-shadow: inset 3px 0 #2f765b; }
+    .order { border-block: 1px solid var(--line); padding-block: 16px; }
+    .order h3 { margin: 4px 0; }
+    .order p { font-size: 13px; }
+    .hero { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 24px; background: white; }
+    .card { background: white; border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 13px; }
+    .card-title { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .pill, .marker { display: inline-flex; align-items: center; border-radius: 99px; font-weight: 650; }
+    .pill { padding: 2px 9px; background: #e7f0e7; color: #215347; font-size: 12px; }
+    .pill.warning { background: var(--cream); color: #734d00; }
+    .marker { width: 23px; height: 23px; justify-content: center; background: var(--green); color: white; font-size: 12px; flex: 0 0 auto; }
+    .sources { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .source { background: #f5f7f3; border-radius: 9px; padding: 12px; }
+    .source.missing { background: var(--cream); }
+    .source p { margin-top: 4px; }
+    .evidence { margin-top: 11px; }
+    .actions, .tabs { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+    .actions { margin-top: 14px; }
+    .action, .tab { font-weight: 650; padding: 8px 12px; border: 1px solid #a9bdb3; background: white; color: var(--green); }
+    .primary, .tab[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: white; }
+    button:hover:not(:disabled) { filter: brightness(.96); }
+    button:disabled { opacity: .62; cursor: default; }
+    .workspace { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: white; }
+    .tabs { gap: 4px; padding: 0 18px; border-bottom: 1px solid var(--line); background: white; }
+    .tab { border: 0; border-radius: 0; color: var(--muted); background: white; padding: 10px 13px; border-bottom: 3px solid transparent; }
+    .tab[aria-pressed="true"] { background: white; color: var(--green); border-bottom-color: var(--green); }
+    .conversation, .workflow { padding: 21px 24px; background: #f7f9f6; }
+    .conversation { display: grid; gap: 15px; }
+    .chat-row { display: flex; align-items: flex-start; gap: 9px; }
+    .chat-row.person { justify-content: flex-end; }
+    .chat-avatar { width: 30px; height: 30px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 9px; background: #dcebe2; color: var(--green); font-size: 11px; font-weight: 800; }
+    .chat-bubble { max-width: min(88%, 670px); min-width: 0; border: 1px solid var(--line); border-radius: 4px 15px 15px; background: white; padding: 10px 13px; overflow-wrap: anywhere; }
+    .chat-bubble p { white-space: pre-wrap; }
+    .chat-row.person .chat-bubble { border-radius: 15px 4px 15px 15px; background: #e6f0e5; border-color: #d9e7d9; }
+    .chat-byline { display: block; margin-bottom: 3px; color: var(--green); font-weight: 700; font-size: 12px; }
+    .chat-card { margin: 0 0 0 39px; }
+    .chat-card > summary { cursor: pointer; font-weight: 650; color: var(--green); }
+    .chat-card .card { margin: 10px 0 0; }
+    .chat-controls { margin-left: 39px; }
+    .chat-controls .actions { margin-top: 0; }
+    .composer { display: grid; gap: 5px; padding: 14px 24px; border-top: 1px solid var(--line); }
+    .composer-row { display: flex; gap: 8px; }
+    .composer input { min-width: 0; width: 100%; border: 1px solid #a9bdb3; border-radius: 9px; padding: 8px 11px; font: inherit; color: var(--ink); }
+    .composer input:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+    .workflow .notice:first-child { margin-top: 0; }
+    .flow { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+    .flow li { display: flex; align-items: flex-start; gap: 10px; }
+    .flow li .pill { margin-left: auto; flex-shrink: 0; }
+    .tool-list { margin: 9px 0 0; padding-left: 19px; }
+    .notice { padding: 12px 14px; background: #e8f1e6; border-radius: 9px; margin-top: 12px; }
+    .notice.warning { background: var(--cream); }
+    .facts { padding-left: 18px; margin: 8px 0 0; }
+    .confirm { border: 1px solid #caa757; background: #fffaf0; border-radius: 9px; padding: 14px; margin-top: 14px; }
+    .status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    @media (max-width: 780px) {
+      .bar, .layout { padding-inline: 17px; }
+      .layout { grid-template-columns: 1fr; gap: 24px; padding-top: 23px; }
+      .case-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 480px) {
+      .case-list, .sources { grid-template-columns: 1fr; }
+      .card, .hero, .conversation, .workflow, .composer { padding: 14px; }
+      .tabs { padding-inline: 6px; }
+      .tab { padding-inline: 8px; }
+      .chat-card, .chat-controls { margin-left: 0; }
+    }
   </style>
 </head>
 <body>
-  <div class="lab-banner">LAB5 · K5-L3A-Day05-T4-TMDT <span>Toàn bộ dữ liệu và thao tác là mô phỏng · Không liên kết Shopee</span></div>
-  <header class="site-header">
-    <a class="brand" href="#" aria-label="TMDT, trang hỗ trợ"><span class="brand-icon">t.</span><span>TMDT<small>HỖ TRỢ ĐƠN HÀNG</small></span></a>
-    <nav class="view-tabs" aria-label="Màn hình prototype">
-      <button id="buyer-tab" class="active" aria-pressed="true">01 <span>Trò chuyện</span></button>
-      <button id="dossier-tab" aria-pressed="false">02 <span>Hồ sơ tranh chấp</span></button>
-    </nav>
-    <span class="local-badge"><i></i> Bản thực hành cục bộ</span>
+  <header>
+    <div class="bar">
+      <span class="brand-icon" aria-hidden="true">↗</span>
+      <div class="brand"><strong>Trợ lý khiếu nại</strong><span>Hàng nhận không đúng mô tả</span></div>
+      <span class="mode">Lab T4 · Dữ liệu giả</span>
+    </div>
   </header>
-  <main>
-    <section class="intro">
-      <div><p class="eyebrow">TRỢ LÝ KHIẾU NẠI · HÀNG KHÔNG ĐÚNG MÔ TẢ</p><h1>Rõ căn cứ.<br><span>Công bằng cho hai bên.</span></h1><p class="intro-copy">Đối chiếu đúng thông tin lúc đặt, chỉ hỏi phần còn thiếu.<br>Quyết định tiền bạc luôn có nhân viên duyệt.</p></div>
-      <div class="case-picker"><label for="scenario">Ca dữ liệu thực hành</label><select id="scenario"></select><div class="case-actions"><button id="reset" class="text-button">↺ Làm lại ca này</button><label class="annotation-toggle"><input id="annotations" type="checkbox" checked> Chú thích HAX</label></div><small id="clock"></small></div>
-    </section>
-    <section id="buyer-view" class="buyer-grid" aria-label="Màn hình người mua"></section>
-    <section id="dossier-view" hidden aria-label="Màn hình hồ sơ tranh chấp"></section>
-    <details class="demo-panel"><summary>Bảng điều khiển dành cho demo · mức tự chủ & đồng hồ</summary><div class="demo-content"><div><strong>Không có mô hình AI chạy thật</strong><p>Chọn ca để thử các nhánh thiết kế. Ô chat tự do dùng quy tắc giới hạn; ca chưa biết được giữ mở và chuyển người.</p></div><div class="demo-buttons"><button id="advance4">+4 giờ mô phỏng</button><button id="advance24">+24 giờ mô phỏng</button></div><div id="tool-matrix"></div></div></details>
-  </main>
-  <footer><span>TMDT / LAB5</span><span>Nguồn đối chiếu, quyền phản hồi, quyết định có người duyệt.</span><span>HTML · CSS · JavaScript / không gửi dữ liệu ra ngoài</span></footer>
-  <div id="toast" role="status" aria-live="polite"></div>
-  <dialog id="decision-modal" aria-labelledby="decision-title"><form method="dialog"><p class="eyebrow">XÁC NHẬN CỦA NHÂN VIÊN · MÔ PHỎNG</p><h2 id="decision-title">Kiểm tra trước khi quyết định</h2><div id="decision-copy"></div><div class="modal-actions"><button value="cancel" class="secondary">Quay lại kiểm tra</button><button id="commit" type="button" class="primary">Xác nhận quyết định</button></div></form></dialog>
-<script id="lab-engine">
-/* LAB5: dữ liệu và bộ chuyển trạng thái mô phỏng, không gọi API bên ngoài. */
-(function (root, factory) {
-  const api = factory();
-  if (typeof module === 'object' && module.exports) module.exports = api;
-  else root.Lab = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
-  'use strict';
-  const START = Date.parse('2026-11-12T09:00:00+07:00');
-  const HOUR = 3600000;
-  const fixtures = {
-    modified: { title: 'Mô tả đã bị sửa', order: 'DEMO-401', item: 'Áo thun cotton · xanh rêu', amount: 249000, snapshot: 'Size L · ngực 104 cm', current: 'Size M · ngực 98 cm', received: 'Size M · ngực 98 cm', mismatch: true, buyerEvidence: true, message: 'Tôi đặt size L mà nhận M. Giờ trang shop lại ghi M, có phải tôi nhớ nhầm không?' },
-    sellerRight: { title: 'Bằng chứng đang khớp mô tả', order: 'DEMO-402', item: 'Áo thun cotton · xanh rêu', amount: 249000, snapshot: 'Size L · ngực 104 cm', current: 'Size L · ngực 104 cm', received: 'Size L · ngực 104 cm', mismatch: false, buyerEvidence: true, message: 'Tôi nghĩ mình mua XL nhưng nhận L. Áo chật, hoàn ngay cho tôi.' },
-    normal: { title: 'Shop đã nhận gửi nhầm', order: 'DEMO-403', item: 'Áo thun cotton · xanh rêu', amount: 249000, snapshot: 'Size L · ngực 104 cm', current: 'Size L · ngực 104 cm', received: 'Size M · ngực 98 cm', mismatch: true, buyerEvidence: true, admission: true, message: 'Tôi đặt L, nhận M. Shop đã xác nhận gửi nhầm trong chat. Hướng dẫn tôi hoàn tiền nhé.' },
-    missing: { title: 'Thiếu mô tả lúc đặt', order: 'DEMO-404', item: 'Áo thun cotton · xanh rêu', amount: 249000, snapshot: null, current: 'Size M · ngực 98 cm', received: 'Size M · ngực 98 cm', mismatch: null, buyerEvidence: true, message: 'Lúc mua tôi thấy ghi L, giờ lại M. Bạn kiểm tra bản lúc đặt giúp tôi.' },
-    vague: { title: 'Chưa rõ đơn và vấn đề', order: null, item: 'Chưa chọn đơn', amount: 0, snapshot: null, current: null, received: null, mismatch: null, buyerEvidence: false, message: 'hàng sai rồi, xử lý đi' },
-    capacity: { title: 'Dung tích có cách hiểu khác nhau', order: 'DEMO-405', item: 'Nồi chiên mẫu 6 lít', amount: 1290000, snapshot: 'Dung tích công bố 6 lít; chưa có phương pháp đo', current: 'Dung tích công bố 6 lít', received: 'Người mua đo lòng nồi được 5 lít', mismatch: null, buyerEvidence: false, message: 'Nồi chiên ghi 6 lít mà tôi đo lòng nồi chỉ được 5 lít. Shop gian dối à?' }
-  };
-  function create(id = 'modified') {
-    if (!fixtures[id]) throw new Error('Ca mô phỏng không tồn tại.');
-    const f = fixtures[id];
-    return { id, now: START, version: 0, buyerDeadline: Date.parse('2026-11-13T23:59:00+07:00'), sellerDeadline: null, buyerReplyDeadline: null, requests: [], buyerEvidence: f.buyerEvidence, sellerReply: f.admission ? 'admit' : null, buyerFollowup: false, handoffQueued: false, handoffAccepted: false, closed: false, outcome: null, reviewed: false, consequence: false, reason: '', draft: null, customUnresolved: false, messages: [{ who: 'buyer', text: f.message }], events: [{ at: START, action: 'mo_ho_so', text: 'Mở dữ liệu dựng; chưa chuyển tiền, chưa đóng khiếu nại.' }] };
+  <div class="layout">
+    <aside aria-label="Kịch bản và thông tin đơn">
+      <p class="label">Chọn kịch bản</p>
+      <div class="case-list" id="cases"></div>
+      <div class="order" id="order"></div>
+      <div class="actions"><button class="action" data-action="reset">Bắt đầu lại ca này</button></div>
+    </aside>
+    <main id="screen"></main>
+  </div>
+  <div class="status" id="announcement" role="status"></div>
+
+  <script type="application/json" id="scenario-data">
+{
+  "match": {
+    "title": "Tem khớp với mô tả",
+    "detail": "Người bán có căn cứ phản hồi",
+    "id": "T4-1088",
+    "item": "Áo thun Basic · Size L",
+    "amount": "249.000 ₫",
+    "complaint": "Áo có tem L mà mình mặc chật. Hoàn tiền luôn đi, không thì mình đăng bài bóc phốt.",
+    "original": "Size L, ngang ngực áo 54 cm (đo khi trải phẳng).",
+    "current": "Size L, ngang ngực áo 54 cm (đo khi trải phẳng).",
+    "evidence": "Ảnh của người mua cho thấy tem size L. Chưa có ảnh đo ngang ngực áo.",
+    "extra": "Ảnh người mua đo ngang ngực áo 54 cm khi trải phẳng.",
+    "assistant": "Tem size L khớp với đơn. Mình chưa đủ căn cứ xác định áo sai kích thước mô tả. Bạn có thể bổ sung ảnh đo ngang ngực áo để nhân viên đối chiếu.",
+    "reply": "Shop gửi ảnh tem L và ảnh đo ngang ngực áo 54 cm, khớp bảng kích thước lúc đặt.",
+    "reviewer": "Tem và số đo của hai bên khớp bản mô tả lúc đặt. Có căn cứ để nhân viên kết luận hàng đúng mô tả.",
+    "decision": "dismiss"
+  },
+  "wrong": {
+    "title": "Shop nhận gửi nhầm đồ",
+    "detail": "Ca có bằng chứng rõ",
+    "id": "T4-1116",
+    "item": "Áo sơ mi Linen · Size L",
+    "amount": "389.000 ₫",
+    "complaint": "Mình đặt L nhưng nhận M. Shop nhắn nhận gửi nhầm rồi. Giờ trả hàng thế nào?",
+    "original": "Biến thể đã đặt: size L.",
+    "current": "Sản phẩm có các size M và L.",
+    "evidence": "Ảnh của người mua cho thấy tem size M. Shop đã nhắn xác nhận gửi nhầm.",
+    "extra": "",
+    "assistant": "Đơn ghi size L, ảnh tem ghi size M và shop đã xác nhận gửi nhầm. Mình đã chuẩn bị bản nháp yêu cầu trả hàng để bạn kiểm tra và gửi.",
+    "reply": "Shop xác nhận gửi size M cho đơn size L và đồng ý nhận lại hàng.",
+    "reviewer": "Đơn đặt size L, tem ghi size M và shop đã xác nhận gửi nhầm. Có căn cứ để nhân viên duyệt hoàn tiền trong mô phỏng.",
+    "decision": "refund"
+  },
+  "counterfeit": {
+    "title": "Nghi hàng giả, đòi khóa shop",
+    "detail": "Chuyển bộ phận chuyên trách",
+    "id": "T4-1152",
+    "item": "Tai nghe SoundLite",
+    "amount": "590.000 ₫",
+    "complaint": "Logo trên hộp nhìn khác hình lúc mua. Chắc hàng giả rồi, khóa shop ngay cho tôi!",
+    "original": "Tai nghe SoundLite, màu đen, kèm hộp và cáp sạc.",
+    "evidence": "Người mua mô tả logo trên hộp trông khác hình. Chưa có kết quả xác minh nguồn gốc.",
+    "assistant": "Logo khác hình chưa đủ để kết luận hàng giả. Mình có thể hướng dẫn bạn gửi báo cáo cho bộ phận chuyên trách xác minh. Việc khóa shop thuộc thẩm quyền của bộ phận xử lý vi phạm.",
+    "route": "specialist"
   }
-  function record(s, action, text) { s.events.push({ at: s.now, action, text }); }
-  function touch(s) { s.version += 1; }
-  function remaining(deadline, now) {
-    if (!deadline) return 'Chưa bắt đầu';
-    const min = Math.max(0, Math.ceil((deadline - now) / 60000));
-    return min ? `${Math.floor(min / 60)} giờ ${String(min % 60).padStart(2, '0')} phút` : 'Đã hết thời hạn';
-  }
-  function analysis(s) {
-    const f = fixtures[s.id];
-    if (s.closed) return { label: 'Đã có quyết định của nhân viên', tone: 'success', text: s.outcome === 'refund' ? 'Đã mô phỏng hoàn tiền theo quyết định nhân viên. Đây không phải giao dịch thật.' : 'Nhân viên đã đóng yêu cầu theo lý do được hiển thị. Đây là kết quả mô phỏng; bạn có thể yêu cầu xem xét lại.', next: 'Xem lý do trong hồ sơ; nếu cần, yêu cầu xem xét lại.' };
-    if (!f.order) return { label: 'Cần làm rõ', tone: 'warn', text: 'Bạn muốn phản ánh đơn nào, và hàng khác mô tả ở điểm nào? Hãy chọn một đơn mẫu để mình đối chiếu.', next: 'Chọn đúng đơn; AI chưa gửi yêu cầu hoặc ra quyết định.' };
-    if (!f.snapshot) return { label: 'Thiếu nguồn đối chiếu', tone: 'warn', text: 'Mình chưa có bản mô tả tại thời điểm bạn đặt hàng nên chưa thể kết luận bên nào đúng. Mô tả hiện tại không thay thế được bản lúc đặt. Mình có thể chuyển hồ sơ để nhân viên kiểm tra nguồn lưu.', next: 'Chuyển nhân viên xác minh nguồn lưu; giữ hồ sơ mở.' };
-    if (s.customUnresolved) return { label: 'Cần làm rõ thông tin mới', tone: 'warn', text: 'Thông tin vừa bổ sung chưa khớp dữ liệu mẫu. Mình giữ hồ sơ mở và chưa thực hiện hoàn tiền hoặc từ chối. Bạn có thể chuyển nhân viên hoặc chọn lại ca dữ liệu phù hợp.', next: 'Gặp nhân viên để làm rõ; không đoán phần còn thiếu.' };
-    if (f.mismatch === null) return { label: 'Chưa đủ căn cứ', tone: 'warn', text: 'Mình chưa xác minh được dung tích công bố và dung tích lòng nồi có cùng cách đo. Chênh lệch này chưa đủ để kết luận gian dối. Bạn bổ sung ảnh tem thông số và cách đo giúp mình nhé.', next: 'Bổ sung dữ liệu và chuyển người có chuyên môn; chưa quyết định tiền.' };
-    if (!f.mismatch) return { label: 'Chưa đủ căn cứ để hoàn tiền', tone: 'warn', text: 'Biến thể lưu tại lúc đặt và ảnh tem bạn gửi hiện đều là size L. Mình chưa thấy bằng chứng giao sai size; bạn vẫn có thể bổ sung điểm khác hoặc sửa đơn đã chọn. Mình chưa hoàn tiền và cũng chưa đóng khiếu nại.', next: s.sellerReply ? 'Xem phản hồi shop, bổ sung ý kiến để nhân viên xem xét.' : 'Xin phản hồi shop và cho người mua cơ hội bổ sung.' };
-    if (s.sellerReply === 'admit') return { label: 'Có căn cứ về việc giao sai', tone: 'success', text: 'Bản lúc đặt ghi L, ảnh hàng nhận ghi M và shop đã xác nhận gửi nhầm. Mình đã tổng hợp căn cứ; nhân viên vẫn cần duyệt trước khi hoàn tiền.', next: 'Chuyển nhân viên duyệt phương án; không phải gửi lại ảnh đã có.' };
-    return { label: s.id === 'modified' ? 'Hai phiên bản mô tả khác nhau' : 'Cần phản hồi shop', tone: 'warn', text: 'Bản lưu lúc đặt ghi size L, ảnh hàng nhận ghi M. Mình dùng bản lúc đặt để đối chiếu; việc mô tả hiện tại ghi gì chưa đủ kết luận nguyên nhân. Chưa hoàn tiền, chưa đóng khiếu nại. Shop có cơ hội phản hồi trước khi nhân viên quyết định.', next: 'Xin phản hồi shop; chuyển hồ sơ kèm hai phiên bản mô tả.' };
-  }
-  function blockers(s, kind) {
-    const f = fixtures[s.id], b = [];
-    if (s.closed) b.push('Hồ sơ đã chốt; không thực hiện giao dịch lần hai.');
-    if (!f.order) b.push('Chưa xác định đơn hàng.');
-    if (!f.snapshot) b.push('Thiếu bản mô tả tại lúc đặt.');
-    if (f.mismatch === null || s.customUnresolved) b.push('Thông tin chưa đủ rõ để ra quyết định trong luồng thường.');
-    if (!s.buyerEvidence) b.push('Chưa có bằng chứng người mua.');
-    if (!s.handoffAccepted) b.push('Nhân viên chưa nhận hồ sơ.');
-    const opportunity = s.sellerReply === 'admit' || s.sellerReply === 'match' || (s.sellerDeadline !== null && s.now >= s.sellerDeadline);
-    if (!opportunity) b.push('Shop chưa phản hồi và chưa hết thời hạn được phản hồi.');
-    if (kind === 'refund' && f.mismatch !== true) b.push('Chưa có căn cứ giao sai để hoàn tiền.');
-    if (kind === 'reject') {
-      if (f.mismatch !== false) b.push('Không có căn cứ đóng yêu cầu vì hàng khớp mô tả.');
-      if (!(s.buyerFollowup || (s.buyerReplyDeadline !== null && s.now >= s.buyerReplyDeadline))) b.push('Người mua chưa có lượt phản hồi cuối; cần phản hồi hoặc chờ đủ 4 giờ sau thông báo đối chiếu.');
+}
+  </script>
+
+  <script>
+    const scenarios = JSON.parse(document.querySelector('#scenario-data').textContent);
+
+    const cases = document.querySelector('#cases');
+    const order = document.querySelector('#order');
+    const screen = document.querySelector('#screen');
+    const announcement = document.querySelector('#announcement');
+    const deadline = '17:00 ngày 14/11/2026';
+    const views = [['buyer', 'Khách hàng (người mua)'], ['seller', 'Người bán'], ['workflow', 'Luồng xử lý AI'], ['staff', 'Nhân viên']];
+    const liveChat = location.protocol !== 'file:';
+    let state;
+
+    function reset(id) {
+      state = {
+        id, view: 'buyer', submitted: false, evidenceAdded: false, draft: id === 'wrong',
+        replied: false, confirming: false, outcome: '', analysis: null,
+        messages: { buyer: [], seller: [] }, drafts: { buyer: '', seller: '' },
+      };
     }
-    if (!s.reviewed) b.push('Chưa xác nhận đã xem căn cứ hai bên và các thời hạn.');
-    if (!s.consequence) b.push('Chưa xác nhận đã hiểu hệ quả tiền bạc khó đảo.');
-    if (s.reason.trim().length < 15) b.push('Cần ghi lý do quyết định ít nhất 15 ký tự.');
-    return b;
-  }
-  function apply(s, action, payload = {}) {
-    const f = fixtures[s.id];
-    if (s.closed && !['appeal', 'advance'].includes(action)) return 'Hồ sơ đã chốt; hãy yêu cầu xem xét lại, không sửa lịch sử.';
-    switch (action) {
-      case 'request': {
-        if (!f.order) return 'Chọn đúng đơn trước khi gửi mẫu bằng chứng.';
-        if (!f.snapshot) return 'Thiếu nguồn lúc đặt: chuyển nhân viên, không hỏi người mua gửi lại bằng chứng đã có.';
-        const target = payload.target || 'seller';
-        if (!['buyer', 'seller'].includes(target)) return 'Người nhận không hợp lệ.';
-        if (s.requests.includes(target) || (target === 'seller' && s.sellerReply)) return 'Đã có yêu cầu hoặc phản hồi; không gửi lặp.';
-        if (target === 'buyer' && s.buyerEvidence) return 'Đã có ảnh người mua; không xin lại.';
-        s.requests.push(target);
-        if (target === 'seller') s.sellerDeadline = s.now + 24 * HOUR;
-        record(s, 'yeu_cau_bang_chung', target === 'seller' ? 'Gửi shop mẫu xin phản hồi, có bản lúc đặt và hạn 24 giờ; không chia sẻ thông tin liên hệ.' : 'Xin ảnh tem thông số và cách đo còn thiếu; không xin thông tin liên hệ.');
-        touch(s); return 'Đã gửi mẫu xin phần bằng chứng còn thiếu. Tin đã gửi không thu hồi được.';
+
+    function button(action, label, options = {}) {
+      const { primary = false, disabled = false } = options;
+      return `<button class="action${primary ? ' primary' : ''}" data-action="${action}" ${disabled ? 'disabled' : ''}>${label}</button>`;
+    }
+
+    function heading(number, title, badge = '') {
+      return `<div class="card-title"><span class="marker" aria-hidden="true">${number}</span><h2>${title}</h2>${badge}</div>`;
+    }
+
+    function escapeText(value) {
+      const element = document.createElement('span');
+      element.textContent = value;
+      return element.innerHTML;
+    }
+
+    function bubble(name, text, person = false) {
+      return `<div class="chat-row${person ? ' person' : ''}">
+        ${person ? '' : '<span class="chat-avatar" aria-hidden="true">AI</span>'}
+        <div class="chat-bubble"><span class="chat-byline">${escapeText(name)}</span><p>${escapeText(text)}</p></div>
+      </div>`;
+    }
+
+    function chat(role, initialMessages, controls = '') {
+      const name = role === 'buyer' ? 'Bạn · Người mua' : 'Bạn · Người bán';
+      const messages = state.messages[role];
+      const pending = messages.at(-1)?.pending;
+      const transcript = messages.map(({ text, reply, model }) => bubble(name, text, true)
+        + (reply ? bubble(model ? `Trợ lý AI · ${model}` : 'Trợ lý · Mô phỏng', reply) : '')).join('');
+      const example = role === 'buyer' ? 'Ví dụ: Tôi cần gửi ảnh gì?' : 'Ví dụ: Shop cần cung cấp bằng chứng gì?';
+      return `<section class="conversation" aria-label="Tin nhắn">
+        ${initialMessages}${transcript}
+        ${pending ? bubble('Trợ lý AI', 'Đang xem hồ sơ và soạn câu trả lời…') : ''}
+        ${controls}
+      </section>
+      <form class="composer" id="composer" data-role="${role}">
+        <div class="composer-row">
+          <input name="message" aria-label="Tin nhắn về hồ sơ mẫu" placeholder="${example}" maxlength="300" required autocomplete="off">
+          <button class="action primary" type="submit" ${pending ? 'disabled' : ''}>Gửi</button>
+        </div>
+        <small>${liveChat ? 'Tin nhắn được gửi tới model. Chỉ nhập thông tin giả dùng cho demo.' : 'Đang mở bản mô phỏng cục bộ. Tin nhắn chỉ hiển thị trong demo.'}</small>
+      </form>`;
+    }
+
+    function evidenceCard(scenario) {
+      return `<section class="card">
+        ${heading(1, 'Căn cứ đối chiếu', scenario.original ? '' : '<span class="pill warning">Thiếu bản lưu</span>')}
+        <div class="sources">
+          <div class="source${scenario.original ? '' : ' missing'}"><h3>Mô tả lúc đặt</h3><small>Bản lưu gắn với đơn ${scenario.id}</small><p>${scenario.original || 'Chưa tìm thấy bản lưu cho đơn này.'}</p></div>
+          <div class="source"><h3>Mô tả hiện tại</h3><small>Trang sản phẩm đang hiển thị</small><p>${scenario.current}</p></div>
+        </div>
+        <p class="evidence"><strong>Bằng chứng đã có.</strong> ${scenario.evidence}</p>
+        ${state.evidenceAdded ? `<p><strong>Ảnh bổ sung.</strong> ${scenario.extra}</p>` : ''}
+      </section>`;
+    }
+
+    function comparisonPanel() {
+      const analysis = state.analysis;
+      const pending = analysis?.status === 'pending';
+      if (location.protocol === 'file:') {
+        return '<p class="notice">Đang mở bản mô phỏng. Để dùng model, chạy máy chủ cục bộ rồi mở http://127.0.0.1:4174/.</p>';
       }
-      case 'evidence':
-        if (!f.order) return 'Chọn đơn trước khi bổ sung.';
-        s.buyerEvidence = true;
-        record(s, 'bo_sung_bang_chung', 'Người mua bổ sung bằng chứng dựng. Ca dung tích vẫn cần chuyên môn; không tự coi là đã chứng minh giao sai.');
-        touch(s); return 'Đã bổ sung dữ liệu mẫu vào hồ sơ.';
-      case 'sellerReply':
-        if (!f.order) return 'Chưa xác định đơn.';
-        if (!s.requests.includes('seller') && !s.sellerReply) return 'Chưa có yêu cầu gửi shop. Người mua cần xin phản hồi trước.';
-        if (!['admit', 'match', 'needtime'].includes(payload.reply)) return 'Phản hồi không hợp lệ.';
-        s.sellerReply = payload.reply;
-        if (!s.buyerReplyDeadline) s.buyerReplyDeadline = s.now + 4 * HOUR;
-        record(s, 'shop_phan_hoi', payload.reply === 'admit' ? 'Shop: xác nhận gửi nhầm; đồng ý phương án hoàn trong dữ liệu dựng.' : payload.reply === 'match' ? 'Shop: tem và biến thể lúc đặt khớp; đề nghị xem xét đủ căn cứ.' : 'Shop: cần kiểm tra thêm. Đây chưa phải bằng chứng kết luận.');
-        record(s, 'thong_bao_nguoi_mua', 'Thông báo phản hồi shop; mở lượt bổ sung cho người mua trong 4 giờ.');
-        touch(s); return 'Đã ghi nhận phản hồi và thông báo cho người mua.';
-      case 'buyerFollowup':
-        if (!s.sellerReply) return 'Chưa có phản hồi shop để người mua xem.';
-        s.buyerFollowup = true;
-        record(s, 'nguoi_mua_phan_hoi', 'Người mua đã xem đối chiếu; giữ yêu cầu để nhân viên xét, chưa có bằng chứng mới. Không có nghĩa đồng ý bị từ chối.');
-        touch(s); return 'Đã gửi ý kiến của bạn; nhân viên sẽ xét cùng bằng chứng hai bên.';
-      case 'handoff':
-        if (s.handoffQueued || s.handoffAccepted) return 'Hồ sơ đã nằm trong hàng chờ hoặc đã được nhận; không tạo bản trùng.';
-        s.handoffQueued = true;
-        record(s, 'chuyen_truong_nhom', 'Đưa vào hàng chờ kèm đơn, nguồn lúc đặt, ảnh đã có, thông tin thiếu và thời hạn. Mục tiêu nhận trong 4 giờ mô phỏng.');
-        touch(s); return 'Đã chuyển hồ sơ. Bạn không phải kể lại; mục tiêu nhận ca là 4 giờ mô phỏng.';
-      case 'undoHandoff':
-        if (s.handoffAccepted) return 'Nhân viên đã nhận nên không thể rút chuyển; có thể gửi bổ sung trong hồ sơ.';
-        if (!s.handoffQueued) return 'Không có lượt chuyển để rút.';
-        s.handoffQueued = false;
-        record(s, 'rut_chuyen_ho_so', 'Rút khỏi hàng chờ trước khi nhân viên nhận; giữ nguyên bằng chứng và tin đã gửi.');
-        touch(s); return 'Đã rút chuyển hồ sơ; tin xin bằng chứng không bị thu hồi.';
-      case 'accept':
-        if (!s.handoffQueued) return 'Chưa có hồ sơ trong hàng chờ.';
-        if (s.handoffAccepted) return 'Nhân viên đã nhận hồ sơ này.';
-        s.handoffAccepted = true;
-        record(s, 'nhan_vien_nhan_ca', 'Nhân viên mô phỏng nhận ca; người mua được thông báo trong trạng thái hồ sơ.');
-        touch(s); return 'Đã nhận hồ sơ. Việc nhận ca chưa thực hiện quyết định tiền bạc.';
-      case 'advance':
-        s.now += (Number(payload.hours) === 4 ? 4 : 24) * HOUR;
-        if (!s.closed && s.sellerDeadline && s.now >= s.sellerDeadline) {
-          record(s, 'qua_han_phan_hoi', 'Hết hạn phản hồi shop: nhắc và chuyển cấp nếu chưa chuyển; không tự hoàn hoặc đóng.');
-          if (!s.handoffQueued && !s.handoffAccepted) s.handoffQueued = true;
+      return `<div class="notice" aria-live="polite">
+        <h3>Đối chiếu bằng LLM</h3>
+        <p>${pending ? 'Đang kiểm tra bằng chứng với model…' : 'Model phân tích dữ liệu mẫu và đưa nhận định để tham khảo.'}</p>
+        ${analysis && !pending ? '<p id="llm-result"></p>' : ''}
+        <div class="actions">${button('compare', 'Đối chiếu bằng LLM', { disabled: pending })}</div>
+      </div>`;
+    }
+
+    async function compareWithModel() {
+      const pending = { status: 'pending' };
+      state.analysis = pending;
+      render();
+      let text;
+      try {
+        const response = await fetch('/api/compare', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: state.id, evidenceAdded: state.evidenceAdded }),
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error);
+        const findings = { insufficient: 'Chưa đủ căn cứ', match: 'Bằng chứng khớp', mismatch: 'Có sai khác' };
+        text = `${findings[result.finding]} · ${result.reason} (${result.model})`;
+      } catch (error) {
+        text = `Chưa có nhận định từ model. ${error.message}`;
+      }
+      if (state.analysis !== pending) return;
+      state.analysis = { text };
+      render();
+    }
+
+    function renderBuyer(scenario) {
+      if (scenario.route === 'specialist') return renderSpecialistChat(scenario);
+      const initialActions = state.id === 'wrong'
+        ? state.draft
+          ? `${button('submit', 'Kiểm tra và gửi hồ sơ', { primary: true })}${button('undo-draft', 'Hoàn tác bản nháp')}`
+          : button('make-draft', 'Tạo lại bản nháp', { primary: true })
+        : button('transfer', state.evidenceAdded ? 'Gửi hồ sơ kèm ảnh' : 'Chuyển nhân viên', { primary: state.evidenceAdded });
+      const canEditEvidence = scenario.extra && !state.outcome;
+      const evidenceAction = canEditEvidence ? state.evidenceAdded
+        ? button('remove-evidence', 'Gỡ ảnh bổ sung')
+        : button('add-evidence', state.submitted ? 'Bổ sung ảnh mẫu' : 'Bổ sung ảnh mẫu và gửi hồ sơ', { primary: !state.submitted }) : '';
+      const assistant = state.id === 'wrong' && !state.draft
+        ? 'Đã hoàn tác bản nháp. Bạn có thể tạo lại yêu cầu trả hàng khi cần.' : scenario.assistant;
+      const messages = bubble('Bạn · Người mua', scenario.complaint, true)
+        + bubble('② Trợ lý AI · Hướng dẫn theo kịch bản', assistant)
+        + (state.evidenceAdded ? bubble('Bạn · Người mua', scenario.extra, true) : '')
+        + (state.analysis?.text ? bubble('Trợ lý AI · Đối chiếu bằng LLM', state.analysis.text) : '')
+        + (state.submitted ? bubble('③ Trợ lý · Trạng thái hồ sơ', caseStatus()) : '');
+      return chat('buyer', messages, `<details class="chat-card"><summary>Xem căn cứ đối chiếu</summary>${evidenceCard(scenario)}</details>
+        <div class="chat-controls">
+          ${!state.submitted && state.draft ? `<p class="notice">Bản nháp đơn ${scenario.id} · Gửi nhầm size · ${scenario.amount}</p>` : ''}
+          <div class="actions">${evidenceAction}${state.submitted
+            ? (!state.replied && state.id !== 'wrong' ? button('undo-transfer', 'Hoàn tác chuyển hồ sơ') : '')
+            : initialActions}</div>
+        </div>`);
+    }
+
+    function renderSpecialistChat(scenario) {
+      const messages = bubble('Bạn · Người mua', scenario.complaint, true)
+        + bubble('Trợ lý AI · Hướng dẫn theo kịch bản', scenario.assistant)
+        + (state.submitted ? bubble('Trợ lý · Trạng thái báo cáo', caseStatus()) : '');
+      let controls = '';
+      if (!state.submitted) {
+        controls = state.confirming ? `<div class="confirm">
+          <h3>Xem lại báo cáo mẫu</h3>
+          <p><strong>Đơn ${scenario.id}.</strong> ${scenario.evidence}</p>
+          <p>Bộ phận chuyên trách sẽ xem báo cáo. Shop vẫn hoạt động trong lúc chờ xác minh.</p>
+          <div class="actions">${button('send-report', 'Xác nhận gửi báo cáo', { primary: true })}${button('cancel', 'Quay lại')}</div>
+        </div>` : button('preview-report', 'Xem báo cáo nghi hàng giả', { primary: true });
+      }
+      return chat('buyer', messages, `<div class="chat-controls">${controls}</div>`);
+    }
+
+    function outcomeCopy() {
+      return {
+        refund: 'Nhân viên đã duyệt hoàn tiền trong mô phỏng.',
+        dismiss: 'Nhân viên đã đóng khiếu nại vì bằng chứng khớp mô tả lúc đặt.',
+      }[state.outcome];
+    }
+
+    function renderSeller(scenario) {
+      if (scenario.route === 'specialist') return chat('seller', bubble('Trợ lý · Thông báo', 'Shop chưa có yêu cầu phản hồi trong luồng khiếu nại này. Shop vẫn đang hoạt động.'));
+      if (!state.submitted) return chat('seller', bubble('Trợ lý · Thông báo', 'Shop chưa nhận yêu cầu phản hồi. Hồ sơ sẽ xuất hiện ở đây sau khi người mua xác nhận gửi.'));
+      const messages = bubble('Trợ lý · Yêu cầu phản hồi', `Đơn ${scenario.id} có khiếu nại hàng nhận không đúng mô tả. Vui lòng gửi mô tả lúc bán và bằng chứng về hàng đã giao trước ${deadline} (mô phỏng).`)
+        + (state.replied ? bubble('Bạn · Người bán', scenario.reply, true) + bubble('Trợ lý · Thông báo', 'Đã nhận phản hồi. Nhân viên có thể xem bằng chứng của cả hai bên.') : '')
+        + (state.outcome ? bubble('Trợ lý · Trạng thái hồ sơ', caseStatus()) : '');
+      return chat('seller', messages, state.replied ? '' : `<div class="chat-controls">${button('reply', 'Gửi phản hồi mẫu', { primary: true })}</div>`);
+    }
+
+    function renderReviewer(scenario) {
+      const canDecide = state.replied && (!scenario.extra || state.evidenceAdded);
+      const decisionLabel = scenario.decision === 'refund' ? 'Duyệt hoàn tiền' : 'Đóng khiếu nại';
+      const consequence = scenario.decision === 'refund'
+        ? `Nếu xác nhận, ${scenario.amount} được hoàn cho người mua trong mô phỏng.`
+        : `Nếu xác nhận, khiếu nại đóng và ${scenario.amount} được ghi nhận cho người bán trong mô phỏng.`;
+      return `<section class="card">
+        ${heading(4, 'Nhân viên xem xét', '<span class="pill">Cần người duyệt</span>')}
+        <ul class="facts"><li><strong>Người mua:</strong> ${scenario.complaint}</li><li><strong>Người bán:</strong> ${state.replied ? scenario.reply : `Chờ phản hồi đến ${deadline}.`}</li></ul>
+        ${state.outcome ? `<p class="notice">${outcomeCopy()}</p>` : ''}
+        ${!state.outcome && state.replied && state.id === 'match' && !state.evidenceAdded ? '<p class="notice warning">Cần thêm ảnh đo từ người mua trước khi chốt hồ sơ.</p>' : ''}
+        ${!state.outcome && canDecide ? `<p class="notice">${scenario.reviewer}</p>` : ''}
+        ${!state.outcome && !state.confirming ? `<div class="actions">${button('review', decisionLabel, { primary: true, disabled: !canDecide })}</div>` : ''}
+        ${state.confirming && canDecide && !state.outcome ? `<div class="confirm"><h3>Xác nhận quyết định</h3><p>${consequence}</p><div class="actions">${button('confirm', 'Xác nhận', { primary: true })}${button('cancel', 'Quay lại')}</div></div>` : ''}
+      </section>`;
+    }
+
+    function caseStatus() {
+      if (scenarios[state.id].route === 'specialist') {
+        return state.submitted ? 'Bộ phận chuyên trách đã nhận báo cáo. Nguồn gốc sản phẩm đang chờ xác minh.' : 'Chờ người mua xác nhận gửi báo cáo.';
+      }
+      if (state.outcome) return outcomeCopy();
+      if (state.replied) return 'Đã nhận phản hồi của shop. Hồ sơ chờ nhân viên xem xét.';
+      return state.submitted ? `Hồ sơ đã tiếp nhận. Shop có thể phản hồi đến ${deadline}.` : 'Chờ người mua gửi hồ sơ.';
+    }
+
+    function renderWorkflow(scenario) {
+      if (scenario.route === 'specialist') return `<div class="workflow"><section class="card">
+        <div class="card-title"><h2>Luồng báo cáo nghi hàng giả</h2><span class="pill warning">Ngoài thẩm quyền của AI</span></div>
+        <ol class="flow">
+          <li><span class="marker" aria-hidden="true">1</span><strong>Tiếp nhận nghi vấn</strong><span class="pill">Chưa xác minh</span></li>
+          <li><span class="marker" aria-hidden="true">2</span><strong>Người mua duyệt nội dung</strong><span class="pill">${state.submitted ? 'Đã xác nhận gửi' : 'Chờ xác nhận'}</span></li>
+          <li><span class="marker" aria-hidden="true">3</span><strong>Bộ phận chuyên trách xem xét</strong><span class="pill">${state.submitted ? 'Chờ xác minh' : 'Chưa nhận báo cáo'}</span></li>
+        </ol>
+        <p class="notice">AI chỉ hướng dẫn gửi báo cáo. Việc xác minh hàng giả và xử lý vi phạm thuộc bộ phận chuyên trách.</p>
+      </section></div>`;
+      const steps = [
+        ['Đối chiếu dữ liệu mẫu', scenario.original ? 'Có bản mô tả lúc đặt' : 'Thiếu bản mô tả lúc đặt'],
+        ['Hướng dẫn người mua', state.draft ? 'Đã chuẩn bị bản nháp' : state.evidenceAdded ? 'Đã bổ sung ảnh' : state.id === 'wrong' ? 'Bản nháp đã hoàn tác' : 'Đề xuất bước tiếp theo'],
+        ['Nhận hồ sơ và phản hồi', state.replied ? 'Shop đã phản hồi' : state.submitted ? 'Chờ shop phản hồi' : 'Chờ người mua gửi'],
+        ['Nhân viên xem xét', state.outcome ? 'Đã xác nhận' : state.replied ? 'Chờ nhân viên' : 'Chưa đến bước này'],
+      ];
+      return `<div class="workflow">
+        <section class="card">
+          <div class="card-title"><h2>Tiến trình hồ sơ</h2></div>
+          <ol class="flow">${steps.map(([title, status], index) => `<li><span class="marker" aria-hidden="true">${index + 1}</span><strong>${title}</strong><span class="pill">${status}</span></li>`).join('')}</ol>
+        </section>
+        ${evidenceCard(scenario)}
+        <section class="card">${comparisonPanel()}</section>
+        <section class="card">
+          <details><summary><strong>Quyền thao tác trong demo</strong></summary>
+            <ul class="tool-list">
+              <li><strong>AI tự làm:</strong> đối chiếu, hỏi thêm bằng chứng và soạn bản nháp có thể hoàn tác.</li>
+              <li><strong>Người mua xác nhận:</strong> gửi hoặc chuyển hồ sơ cho nhân viên.</li>
+              <li><strong>Nhân viên duyệt:</strong> hoàn tiền hoặc đóng khiếu nại trong tab Nhân viên.</li>
+              <li><strong>Cấm AI:</strong> phạt hoặc khóa shop.</li>
+            </ul>
+          </details>
+        </section>
+      </div>`;
+    }
+
+    function renderStaff(scenario) {
+      if (scenario.route === 'specialist') return `<div class="workflow"><section class="card">
+        <div class="card-title"><h2>Báo cáo chuyển chuyên trách</h2><span class="pill">${state.submitted ? 'Chờ xác minh' : 'Chưa gửi'}</span></div>
+        <p>${caseStatus()}</p>
+        ${state.submitted ? `<p><strong>Đơn ${scenario.id}.</strong> ${scenario.evidence}</p>` : ''}
+      </section></div>`;
+      if (!state.submitted) return `<div class="workflow"><section class="card">
+        <h2>Chưa có hồ sơ cần xem</h2><p>${caseStatus()}</p>
+      </section></div>`;
+      return `<div class="workflow">${renderReviewer(scenario)}${evidenceCard(scenario)}</div>`;
+    }
+
+    function render() {
+      const scenario = scenarios[state.id];
+      cases.innerHTML = Object.entries(scenarios).map(([id, value]) => `<button class="case" data-case="${id}" aria-pressed="${id === state.id}"><strong>${value.title}</strong><small>${value.detail}</small></button>`).join('');
+      order.innerHTML = `<p class="label">Đơn ${scenario.id}</p><h3>${scenario.item}</h3><p>${scenario.amount} · Đã nhận hàng</p>`;
+      const renderView = { buyer: renderBuyer, seller: renderSeller, workflow: renderWorkflow, staff: renderStaff }[state.view];
+      const status = scenario.route === 'specialist' ? (state.submitted ? 'Đã chuyển chuyên trách' : 'Chưa gửi báo cáo')
+        : state.outcome ? 'Đã có kết quả' : state.submitted ? 'Đang xử lý' : 'Chưa gửi hồ sơ';
+      screen.innerHTML = `<div class="workspace">
+        <div class="hero"><div><p class="label">Đơn ${scenario.id}</p><h1 id="screen-title" tabindex="-1">${scenario.title}</h1></div><span class="pill">${status}</span></div>
+        <nav class="tabs" aria-label="Màn hình demo">${views.map(([view, label]) => `<button class="tab" data-action="${view}" aria-pressed="${state.view === view}">${label}</button>`).join('')}</nav>
+        ${renderView(scenario)}
+      </div>`;
+      const input = screen.querySelector('#composer input');
+      if (input) input.value = state.drafts[state.view];
+      const result = document.querySelector('#llm-result');
+      if (result) result.textContent = state.analysis.text;
+    }
+
+    function replyToMessage(role, message) {
+      const topic = message.toLocaleLowerCase('vi');
+      const scenario = scenarios[state.id];
+      if (scenario.route === 'specialist') {
+        if (role === 'seller') return 'Shop chưa có yêu cầu phản hồi trong luồng khiếu nại này.';
+        return state.submitted ? caseStatus() : scenario.assistant;
+      }
+      if (role === 'seller') {
+        if (!state.submitted || state.replied) return caseStatus();
+        return `Shop có thể gửi mô tả lúc bán và bằng chứng trước ${deadline}. Bấm “Gửi phản hồi mẫu” để ghi nhận vào hồ sơ demo.`;
+      }
+      if (/trạng thái|đến đâu|bao lâu|hạn/.test(topic)) return caseStatus();
+      if (/hoàn tiền|đóng khiếu nại|phạt|khóa/.test(topic)) return 'Nhân viên xem bằng chứng của hai bên trước khi quyết định hoàn tiền hoặc đóng khiếu nại. Việc phạt shop nằm ngoài luồng này.';
+      if (state.submitted) return caseStatus();
+      return scenario.assistant;
+    }
+
+    screen.addEventListener('input', (event) => {
+      if (event.target.name === 'message') state.drafts[state.view] = event.target.value;
+    });
+
+    screen.addEventListener('submit', async (event) => {
+      if (event.target.id !== 'composer') return;
+      event.preventDefault();
+      const role = event.target.dataset.role;
+      const text = event.target.elements.message.value.trim();
+      const conversation = state;
+      const turns = state.messages[role];
+      if (!text || turns.at(-1)?.pending) return;
+      const history = turns.filter(turn => turn.model).slice(-3).map(({ text, reply }) => ({ text, reply }));
+      const turn = { text, pending: liveChat };
+      turns.push(turn);
+      state.drafts[role] = '';
+      if (!liveChat) turn.reply = replyToMessage(role, text);
+      render();
+      screen.querySelector('#composer input').focus();
+      if (liveChat) {
+        const { id, evidenceAdded, submitted, replied, draft, outcome } = state;
+        try {
+          const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id, evidenceAdded, submitted, replied, draft, outcome, role, message: text, history }),
+          });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error);
+          turn.reply = result.reply;
+          turn.model = result.model;
+        } catch (error) {
+          if (state !== conversation) return;
+          turn.reply = `Chưa kết nối được với model. ${replyToMessage(role, text)}`;
         }
-        touch(s); return 'Đã tăng đồng hồ mô phỏng. Hết hạn không tự tạo quyết định tiền bạc.';
-      case 'appeal':
-        if (!s.closed) return 'Hồ sơ còn mở; bạn có thể bổ sung hoặc gặp nhân viên.';
-        if (s.events.some(e => e.action === 'yeu_cau_xem_xet_lai')) return 'Đã ghi nhận yêu cầu xem xét lại; không tạo trùng.';
-        record(s, 'yeu_cau_xem_xet_lai', 'Tạo đề nghị xem xét lại cho nhân viên; không hứa thu hồi tiền và không đảo quyết định cũ.');
-        return 'Đã ghi nhận yêu cầu xem xét lại trong mô phỏng; quyết định cũ chưa bị đảo.';
-      default: return 'Thao tác không được hỗ trợ; chưa thay đổi hồ sơ.';
-    }
-  }
-  function message(s, text) {
-    if (s.closed) return 'Hồ sơ đã chốt; hãy dùng nút yêu cầu xem xét lại.';
-    const clean = String(text).trim().slice(0, 1200);
-    if (!clean) return 'Bạn nhập nội dung trước nhé.';
-    s.messages.push({ who: 'buyer', text: clean });
-    const normalized = clean.toLocaleLowerCase('vi');
-    let response;
-    if (/số điện thoại|địa chỉ|sdt|sđt|otp|mật khẩu/.test(normalized)) response = 'Mình không cung cấp thông tin liên hệ của bên kia và không xin OTP hay mật khẩu. Bạn có thể tiếp tục trao đổi bằng chứng trong hồ sơ qua sàn.';
-    else if (/hàng giả|khóa shop|khoá shop|phạt shop/.test(normalized)) {
-      response = 'Nghi hàng giả hoặc yêu cầu phạt shop cần bộ phận chuyên trách xác minh. Mình không thể kết luận hay hứa khoá shop. Mình đã chuyển hồ sơ để nhân viên phân tuyến; chưa thay đổi tiền hoặc uy tín shop.';
-      apply(s, 'handoff');
-    } else if (/bóc phốt|boc phot|doạ|dọa/.test(normalized)) response = 'Mình hiểu bạn đang bức xúc. Lời doạ không thay thế bằng chứng; hồ sơ vẫn được đối chiếu theo mô tả lúc đặt và ý kiến hai bên. Mình chưa hoàn tiền hoặc đóng khiếu nại.';
-    else if (/gửi lại|gởi lại|hỏi lại|đã gửi/.test(normalized)) response = 'Mình sẽ dùng bằng chứng đã có và chỉ nêu đúng phần còn thiếu. Bạn có thể xem danh sách căn cứ trong hồ sơ hoặc gặp nhân viên.';
-    else {
-      s.customUnresolved = true;
-      response = 'Mình chưa xác minh được thông tin mới này từ dữ liệu mẫu. Mình chưa kết luận hoặc chuyển tiền. Bạn muốn chuyển nhân viên để kiểm tra thêm không?';
-    }
-    s.messages.push({ who: 'ai', text: response });
-    record(s, 'tin_nhan_bo_sung', 'Nhận nội dung bổ sung; không dùng lời doạ hoặc tự xưng thẩm quyền để bỏ qua chốt duyệt.');
-    touch(s); return response;
-  }
-  function prepare(s, kind) {
-    if (!['refund', 'reject'].includes(kind)) return { ok: false, errors: ['Loại quyết định không hợp lệ.'] };
-    const errors = blockers(s, kind);
-    if (errors.length) return { ok: false, errors };
-    s.draft = { kind, version: s.version, reason: s.reason.trim(), amount: fixtures[s.id].amount };
-    return { ok: true, draft: s.draft };
-  }
-  function commit(s) {
-    if (!s.draft) return { ok: false, errors: ['Chưa có bản duyệt.'] };
-    if (s.draft.version !== s.version || s.draft.reason !== s.reason.trim()) {
-      s.draft = null; return { ok: false, errors: ['Hồ sơ đã thay đổi; cần xem và lập bản duyệt mới.'] };
-    }
-    const errors = blockers(s, s.draft.kind);
-    if (errors.length) return { ok: false, errors };
-    s.closed = true;
-    s.outcome = s.draft.kind;
-    record(s, s.outcome === 'refund' ? 'soan_hoan_tien' : 'tu_choi_khieu_nai', `${s.outcome === 'refund' ? 'Mô phỏng hoàn tiền' : 'Mô phỏng đóng khiếu nại'} sau nhân viên duyệt. Lý do: ${s.draft.reason}`);
-    record(s, 'thong_bao_hai_ben', 'Thông báo đồng thời cho người mua và người bán: quyết định, căn cứ, số tiền, lý do và đường xem xét lại.');
-    touch(s); s.draft = null;
-    return { ok: true };
-  }
-  return { fixtures, START, HOUR, create, analysis, remaining, blockers, apply, message, prepare, commit };
-});
-</script>
-<script id="lab-app">
-'use strict';
-const $ = id => document.getElementById(id);
-const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-const cash = value => value.toLocaleString('vi-VN') + ' đ';
-const date = value => value ? new Intl.DateTimeFormat('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh', hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' }).format(new Date(value)) : 'Chưa bắt đầu';
-let state = Lab.create(), view = 'buyer', role = 'seller', toastTimer;
-const n = value => `<span class="number">${value}</span>`;
-const shirt = '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M21 10 9 17 3 29l12 6 5-7v28h24V28l5 7 12-6-6-12-12-7c-2 8-20 8-22 0Z" fill="#648576" stroke="#47695a" stroke-width="2"/><path d="M23 11c2 8 16 8 18 0" fill="none" stroke="#d4e3d5" stroke-width="3"/></svg>';
-function toast(text) { $('toast').textContent = text; $('toast').classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').classList.remove('show'), 7000); }
-function statusText() { return state.closed ? (state.outcome === 'refund' ? 'Đã hoàn tiền · mô phỏng' : 'Đã đóng yêu cầu · mô phỏng') : state.handoffAccepted ? 'Nhân viên đã nhận · chưa có quyết định' : state.handoffQueued ? 'Đang chờ nhân viên · chưa có quyết định' : 'Đang thu thập căn cứ · chưa có quyết định'; }
-function actionButton(action, text, className = 'secondary small', extra = '') { return `<button class="${className}" data-action="${action}" ${extra}>${text}</button>`; }
-function evidenceCard() {
-  const f = Lab.fixtures[state.id];
-  const sourceCaption = f.snapshot && f.order ? escapeHTML(f.order) + ' / phiên bản v1' : f.order ? 'Chưa có bản lưu để kiểm chứng' : 'Chưa xác định đơn';
-  return `<div class="card"><div class="card-head"><h2>${n(1)}Căn cứ đối chiếu</h2><span class="pill neutral">Dữ liệu dựng</span></div><div class="card-pad"><div class="compare-grid"><div class="evidence original"><small>BẢN LƯU LÚC ĐẶT · ${f.snapshot ? '05/11, 10:00' : 'CHƯA CÓ NGUỒN'}</small><b>${escapeHTML(f.snapshot || 'Chưa có nguồn lưu')}</b><em>${sourceCaption}</em></div><div class="evidence"><small>MÔ TẢ HIỆN TẠI · 12/11, 08:00</small><b>${escapeHTML(f.current || 'Chưa có thông tin')}</b><em>Chỉ tham khảo; không thay bản lúc đặt</em></div><div class="evidence received"><div><small>BẰNG CHỨNG NGƯỜI MUA</small><b>${escapeHTML(f.received || 'Chưa có thông tin')}</b></div><span class="pill ${state.buyerEvidence ? '' : 'warn'}">${state.buyerEvidence ? 'Đã có' : 'Cần bổ sung'}</span></div></div><p class="note">${state.id === 'modified' ? 'Hai phiên bản khác nhau. Đây là dấu hiệu cần xác minh, chưa chứng minh shop cố ý sửa để né trách nhiệm.' : 'Căn cứ là dữ liệu mẫu; nhãn khớp chưa chứng minh mọi đặc tính của hàng đều đúng.'}</p></div></div>`;
-}
-function orderCard() {
-  const f = Lab.fixtures[state.id];
-  return `<div class="card card-pad"><p class="section-label">ĐƠN HÀNG ĐANG ĐƯỢC HỖ TRỢ</p><div class="order-top"><div class="product-symbol">${shirt}</div><div><h3>${escapeHTML(f.item)}</h3><p>${escapeHTML(f.order || 'Hãy chọn đúng đơn mẫu')} · ${f.order ? 'nhận hàng 06/11' : 'chưa có dữ liệu'}</p><strong>${f.order ? cash(f.amount) : '—'}</strong></div></div><div class="deadline">Hạn gửi yêu cầu: ${date(state.buyerDeadline)}<strong>Còn ${Lab.remaining(state.buyerDeadline, state.now)}</strong></div><p class="note">Chính sách dựng: 7 ngày từ mốc nhận hàng. Mở hồ sơ trước hạn không bị tự đóng do chờ xử lý.</p></div>`;
-}
-function progressCard() {
-  const shopStatus = state.sellerReply ? 'Shop đã phản hồi' : state.sellerDeadline ? (state.now >= state.sellerDeadline ? 'Shop đã hết hạn; hồ sơ chuyển nhân viên, chưa tự quyết' : 'Shop còn ' + Lab.remaining(state.sellerDeadline, state.now)) : 'Chưa gửi yêu cầu phản hồi shop';
-  return `<div class="card card-pad"><p class="section-label">BẠN ĐANG Ở BƯỚC NÀO?</p><ol class="timeline"><li><span class="step-dot ${Lab.fixtures[state.id].order ? 'done' : ''}"></span><div>Xác định đơn & đối chiếu nguồn<small>Ưu tiên bản lưu tại lúc đặt hàng</small></div></li><li><span class="step-dot ${state.sellerReply ? 'done' : ''}"></span><div>Hai bên bổ sung bằng chứng<small>${shopStatus}</small></div></li><li><span class="step-dot ${state.handoffAccepted ? 'done' : ''}"></span><div>Nhân viên xem xét<small>${state.handoffAccepted ? 'Đã nhận hồ sơ' : state.handoffQueued ? 'Đang trong hàng chờ; mục tiêu nhận 4 giờ mô phỏng' : 'Chưa chuyển nhân viên'}</small></div></li><li><span class="step-dot ${state.closed ? 'done' : ''}"></span><div>Thông báo quyết định cho hai bên<small>${state.closed ? 'Đã thông báo trong mô phỏng' : 'Chưa hoàn tiền, chưa đóng yêu cầu'}</small></div></li></ol></div>`;
-}
-function buyerHTML() {
-  const a = Lab.analysis(state), f = Lab.fixtures[state.id];
-  const messages = state.messages.map(m => `<div class="bubble ${m.who === 'buyer' ? 'me' : 'ai'}"><small>${m.who === 'buyer' ? 'Bạn · người mua' : 'Trợ lý AI · phản hồi theo quy tắc mẫu'}</small>${escapeHTML(m.text)}</div>`).join('');
-  const buyerReplyStatus = state.closed ? 'Hồ sơ đã có quyết định. Bạn có thể yêu cầu xem xét lại bằng nút bên dưới.' : state.buyerFollowup ? 'Đã ghi nhận ý kiến giữ yêu cầu của bạn; nhân viên sẽ xem xét cùng căn cứ hai bên.' : `Bạn có thể bổ sung hoặc giữ yêu cầu để nhân viên xét. ${state.buyerReplyDeadline ? 'Lượt phản hồi cuối còn ' + Lab.remaining(state.buyerReplyDeadline, state.now) + '.' : ''}`;
-  const feedback = state.sellerReply ? `<div class="response-box"><strong>Shop đã phản hồi</strong>${state.sellerReply === 'admit' ? 'Shop xác nhận gửi nhầm trong bằng chứng dựng.' : state.sellerReply === 'match' ? 'Shop cho rằng tem và biến thể khớp mô tả lúc đặt.' : 'Shop cần kiểm tra thêm; chưa có căn cứ kết luận.'}<p>${buyerReplyStatus}</p>${!state.closed && !state.buyerFollowup ? actionButton('buyerFollowup', 'Đã xem · giữ yêu cầu để nhân viên xét') : ''}</div>` : '';
-  return `<div class="card"><div class="card-head"><div class="assistant-title"><span class="assistant-avatar">✦</span><div><strong>Trợ lý khiếu nại <span class="pill">AI mô phỏng</span></strong><small>Hướng dẫn và tổng hợp · không tự phán quyết tiền bạc</small></div></div><span class="pill neutral">${f.order || 'Chưa chọn đơn'}</span></div><div class="chat-body">${messages}<div class="bubble ai"><small>Trợ lý khiếu nại · dựa vào dữ liệu đơn mẫu</small><span class="pill ${a.tone === 'warn' ? 'warn' : ''}">${n(2)}${a.label}</span><p>${escapeHTML(a.text)}</p><div class="next-step"><b>Bước tiếp theo</b><br>${escapeHTML(a.next)}</div></div>${feedback}${state.closed ? `<div class="success-box"><b>Lý do nhân viên:</b> ${escapeHTML(state.reason)}<br>Số tiền đơn: ${cash(f.amount)}. ${state.outcome === 'refund' ? 'Tiền về phương thức gốc trong mô phỏng.' : 'Tiền được ghi nhận về người bán trong mô phỏng.'}</div>` : ''}</div><div class="chat-actions">${state.closed ? actionButton('appeal', 'Yêu cầu xem xét lại', 'secondary') : `${actionButton('requestSeller', 'Xin phản hồi shop', 'primary small', (!f.order || !f.snapshot || state.sellerReply || state.requests.includes('seller')) ? 'disabled' : '')}${!state.buyerEvidence ? actionButton('evidence', 'Bổ sung bằng chứng mẫu') : ''}${actionButton('handoff', state.handoffAccepted ? 'Nhân viên đã nhận' : state.handoffQueued ? 'Đã chuyển nhân viên' : 'Gặp nhân viên', 'secondary small', state.handoffQueued || state.handoffAccepted ? 'disabled' : '')}${state.handoffQueued && !state.handoffAccepted ? actionButton('undoHandoff', 'Rút chuyển trước khi được nhận') : ''}${actionButton('correction', n(3) + 'Sửa đơn / thông tin')}`}</div><form id="chat-form" class="chat-form"><input id="chat-input" aria-label="Tin nhắn bổ sung" placeholder="Bổ sung thông tin hoặc thử một ca lạ…" maxlength="1200" ${state.closed ? 'disabled' : ''}><button class="primary" ${state.closed ? 'disabled' : ''}>Gửi</button></form></div><aside class="side-stack">${orderCard()}${evidenceCard()}${progressCard()}</aside>`;
-}
-function shopHTML() {
-  const f = Lab.fixtures[state.id];
-  if (!state.requests.includes('seller') && !state.sellerReply) return `<div class="card empty">Shop chưa nhận yêu cầu cho ca này. Ở màn hình Trò chuyện, chọn “Xin phản hồi shop” để bắt đầu. Không có thông tin người mua bị chia sẻ tự động.</div>`;
-  return `<div class="card"><div class="card-head"><h2>Phản hồi của người bán</h2><span class="pill">Shop mẫu</span></div><div class="card-pad"><p class="note">Bạn chỉ thấy nội dung khiếu nại và bằng chứng cần thiết; không có số điện thoại, địa chỉ, OTP hoặc thông tin thanh toán của người mua.</p><div class="response-box"><strong>Khiếu nại · ${escapeHTML(f.order)}</strong>${escapeHTML(f.message)}</div><div class="deadline">Hạn phản hồi shop: ${date(state.sellerDeadline)}<strong>${state.sellerDeadline ? 'Còn ' + Lab.remaining(state.sellerDeadline, state.now) : 'Đã có phản hồi trong dữ liệu ban đầu'}</strong></div><p class="note">Quá hạn được nhắc và chuyển nhân viên; không tự động xử thua shop.</p><label class="field-label" for="seller-answer">Chọn phản hồi dựng để demo</label><select id="seller-answer" ${state.closed ? 'disabled' : ''}><option value="${f.mismatch === false ? 'match' : 'admit'}">${f.mismatch === false ? 'Tem khớp biến thể lúc đặt; đề nghị xem xét đủ bằng chứng' : 'Xác nhận gửi nhầm; đồng ý phương án hoàn'}</option><option value="needtime">Chưa xác minh được; cần kiểm tra thêm</option></select><div class="review-actions">${actionButton('sellerReply', 'Gửi phản hồi & bằng chứng mẫu', 'primary', state.closed ? 'disabled' : '')}</div>${state.sellerReply ? `<div class="success-box">Đã ghi nhận phản hồi. Người mua được thông báo và có lượt bổ sung. ${state.closed ? 'Quyết định: ' + (state.outcome === 'refund' ? 'hoàn tiền' : 'đóng yêu cầu') + '. Lý do: ' + escapeHTML(state.reason) : 'Chưa có quyết định tiền bạc.'}</div>` : ''}</div></div>`;
-}
-function reviewerHTML() {
-  const refund = Lab.blockers(state, 'refund'), reject = Lab.blockers(state, 'reject');
-  return `<div class="card"><div class="card-head"><h2>Nhân viên duyệt quyết định</h2><span class="pill warn">Cần người duyệt</span></div><div class="card-pad"><p class="note">Chuyển vai chỉ để trình diễn, không phải xác thực nhân viên. Không có giao dịch hoặc tài khoản thật.</p>${!state.handoffAccepted ? actionButton('accept', 'Nhận hồ sơ từ hàng chờ', 'primary', !state.handoffQueued || state.closed ? 'disabled' : '') : '<span class="pill">Đã nhận hồ sơ</span>'}<div class="response-box"><strong>Bản tóm tắt bàn giao</strong>${escapeHTML(Lab.analysis(state).text)}<p>Shop: ${state.sellerReply === 'admit' ? 'đã nhận gửi nhầm' : state.sellerReply === 'match' ? 'đưa căn cứ khớp mô tả' : state.sellerReply === 'needtime' ? 'chưa xác minh được' : 'chưa phản hồi'}. Người mua: ${state.buyerFollowup ? 'đã phản hồi sau khi xem ý kiến shop' : 'chưa có lượt phản hồi cuối'}.</p></div><label class="review-check"><input id="reviewed" type="checkbox" ${state.reviewed ? 'checked' : ''} ${state.closed ? 'disabled' : ''}>Tôi đã xem bản lúc đặt, bằng chứng hai bên và quyền/thời hạn phản hồi.</label><label class="review-check"><input id="consequence" type="checkbox" ${state.consequence ? 'checked' : ''} ${state.closed ? 'disabled' : ''}>Tôi hiểu hoàn tiền hoặc đóng khiếu nại khó đảo; AI chưa thực hiện thay tôi.</label><label class="field-label" for="reason">Lý do quyết định gửi cho cả hai bên</label><textarea id="reason" maxlength="1000" placeholder="Ghi căn cứ cụ thể; ít nhất 15 ký tự…" ${state.closed ? 'disabled' : ''}>${escapeHTML(state.reason)}</textarea><div class="review-actions"><button id="refund-button" class="primary" data-action="refund" ${refund.length ? 'disabled' : ''}>Duyệt hoàn ${cash(Lab.fixtures[state.id].amount)}</button><button id="reject-button" class="danger" data-action="reject" ${reject.length ? 'disabled' : ''}>Duyệt đóng yêu cầu</button></div><div id="guard-info">${guardHTML(refund, reject)}</div>${state.closed ? '<div class="success-box">Quyết định đã được ghi nhận đúng một lần và thông báo hai bên. Không có nút hoàn tác giao dịch; xem xét lại là một yêu cầu riêng.</div>' : ''}</div></div>`;
-}
-function guardHTML(refund, reject) {
-  return `<details open><summary class="note">Điều kiện còn thiếu để hoàn tiền (${refund.length})</summary><ul class="blockers">${refund.map(x => '<li>' + escapeHTML(x) + '</li>').join('') || '<li>Đủ điều kiện mở bước xác nhận.</li>'}</ul></details><details><summary class="note">Điều kiện còn thiếu để đóng yêu cầu (${reject.length})</summary><ul class="blockers">${reject.map(x => '<li>' + escapeHTML(x) + '</li>').join('') || '<li>Đủ điều kiện mở bước xác nhận.</li>'}</ul></details>`;
-}
-function dossierHTML() {
-  return `<div class="role-bar"><div><p class="eyebrow">MỘT HỒ SƠ · HAI BÊN ĐƯỢC NGHE</p><h2>Hồ sơ ${escapeHTML(Lab.fixtures[state.id].order || 'chưa xác định')}</h2></div><div class="role-buttons"><button id="seller-role" class="small ${role === 'seller' ? 'active' : ''}" aria-pressed="${role === 'seller'}">Vai người bán</button><button id="reviewer-role" class="small ${role === 'reviewer' ? 'active' : ''}" aria-pressed="${role === 'reviewer'}">Vai nhân viên</button></div></div><div class="state-strip"><div><strong>${escapeHTML(statusText())}</strong><span>Hai bên được thông báo ngay khi có quyết định trong mô phỏng.</span></div><span class="pill neutral">Chưa phạt shop</span></div><div class="dossier-layout"><div class="side-stack" style="display:grid;grid-template-columns:1fr">${evidenceCard()}<div class="card card-pad"><p class="section-label">LỊCH SỬ XỬ LÝ · GIỮ NGUYÊN DẤU VẾT</p><ol class="audit">${state.events.map(e => `<li><small>${date(e.at)} · ${escapeHTML(e.action)}</small>${escapeHTML(e.text)}</li>`).join('')}</ol></div></div>${role === 'seller' ? shopHTML() : reviewerHTML()}</div>`;
-}
-function syncReview() {
-  if (!$('reviewed')) return;
-  state.reviewed = $('reviewed').checked;
-  state.consequence = $('consequence').checked;
-  state.reason = $('reason').value;
-  const refund = Lab.blockers(state, 'refund'), reject = Lab.blockers(state, 'reject');
-  $('refund-button').disabled = refund.length > 0;
-  $('reject-button').disabled = reject.length > 0;
-  $('guard-info').innerHTML = guardHTML(refund, reject);
-}
-function render() {
-  $('scenario').value = state.id;
-  $('clock').textContent = 'Đồng hồ cố định để demo: ' + date(state.now) + '/2026 · GMT+7';
-  $('buyer-view').innerHTML = buyerHTML();
-  $('dossier-view').innerHTML = dossierHTML();
-  $('buyer-view').hidden = view !== 'buyer'; $('dossier-view').hidden = view !== 'dossier';
-  $('buyer-tab').classList.toggle('active', view === 'buyer'); $('buyer-tab').setAttribute('aria-pressed', String(view === 'buyer'));
-  $('dossier-tab').classList.toggle('active', view === 'dossier'); $('dossier-tab').setAttribute('aria-pressed', String(view === 'dossier'));
-  document.querySelectorAll('[data-action]').forEach(button => button.addEventListener('click', () => dispatch(button.dataset.action)));
-  $('seller-role').onclick = () => { role = 'seller'; render(); };
-  $('reviewer-role').onclick = () => { role = 'reviewer'; render(); };
-  $('chat-form').onsubmit = event => { event.preventDefault(); const input = $('chat-input').value; if (!input.trim()) return; Lab.message(state, input); render(); };
-  if ($('reviewed')) { $('reviewed').onchange = syncReview; $('consequence').onchange = syncReview; $('reason').oninput = syncReview; }
-}
-function dispatch(action) {
-  if (action === 'correction') { $('scenario').focus(); toast('Chọn lại ca/đơn trong danh sách phía trên. Đây là đổi hồ sơ demo, không sửa lịch sử giao dịch của ca đã chốt.'); return; }
-  if (action === 'refund' || action === 'reject') {
-    if (role !== 'reviewer' || view !== 'dossier') { toast('Cần nhân viên duyệt trong hồ sơ.'); return; }
-    syncReview();
-    const result = Lab.prepare(state, action);
-    if (!result.ok) { toast(result.errors.join(' ')); return; }
-    $('decision-title').textContent = action === 'refund' ? 'Duyệt hoàn tiền cho người mua?' : 'Duyệt đóng khiếu nại?';
-    $('decision-copy').innerHTML = `<div class="decision-detail">Đơn ${escapeHTML(Lab.fixtures[state.id].order)}<strong>${cash(result.draft.amount)}</strong><p>${escapeHTML(result.draft.reason)}</p><div class="warning-box">${action === 'refund' ? 'Thao tác mô phỏng tiền về người mua.' : 'Thao tác mô phỏng đóng yêu cầu và tiền về người bán.'} Khó đảo; chỉ quyết định khi đã xem căn cứ. Không có nút hoàn tác tiền.</div><p>Cả hai bên nhận quyết định, căn cứ và đường yêu cầu xem xét lại.</p></div>`;
-    $('decision-modal').showModal(); return;
-  }
-  let result;
-  if (action === 'requestSeller') result = Lab.apply(state, 'request', { target: 'seller' });
-  else if (action === 'sellerReply') result = Lab.apply(state, 'sellerReply', { reply: $('seller-answer').value });
-  else result = Lab.apply(state, action);
-  render(); toast(result);
-}
-$('scenario').innerHTML = Object.entries(Lab.fixtures).map(([id, f]) => `<option value="${id}">${escapeHTML(f.title)}</option>`).join('');
-$('scenario').onchange = () => { state = Lab.create($('scenario').value); $('decision-modal').close(); render(); toast('Đã mở dữ liệu ca mới. Các trạng thái trước là phiên mô phỏng tạm thời.'); };
-$('reset').onclick = () => { state = Lab.create(state.id); $('decision-modal').close(); render(); toast('Đã đặt lại ca mô phỏng.'); };
-$('buyer-tab').onclick = () => { view = 'buyer'; render(); };
-$('dossier-tab').onclick = () => { view = 'dossier'; render(); };
-$('annotations').onchange = () => document.body.classList.toggle('no-annotations', !$('annotations').checked);
-$('advance4').onclick = () => { toast(Lab.apply(state, 'advance', { hours: 4 })); render(); };
-$('advance24').onclick = () => { toast(Lab.apply(state, 'advance', { hours: 24 })); render(); };
-$('commit').onclick = () => { const result = Lab.commit(state); $('decision-modal').close(); render(); toast(result.ok ? 'Đã ghi quyết định mô phỏng và thông báo cả hai bên.' : result.errors.join(' ')); };
-$('decision-modal').addEventListener('close', () => { state.draft = null; });
-$('tool-matrix').innerHTML = '<table><thead><tr><th>Tool</th><th>Mức tự chủ</th><th>Điều kiện / hệ quả</th></tr></thead><tbody><tr><td>yeu_cau_bang_chung</td><td>Tự làm có điều kiện</td><td>Đúng đơn, đúng bên, chỉ phần thiếu; tin đã gửi không thu hồi</td></tr><tr><td>chuyen_truong_nhom</td><td>Tự làm</td><td>Rút chuyển trước khi nhân viên nhận; không xoá tin đã gửi</td></tr><tr><td>soan_hoan_tien</td><td>Nhân viên duyệt</td><td>Thực sự hoàn tiền trong định nghĩa đề; prototype chỉ mô phỏng</td></tr><tr><td>tu_choi_khieu_nai</td><td>Nhân viên duyệt</td><td>Đủ căn cứ, hai bên có cơ hội phản hồi, xác nhận hệ quả</td></tr><tr><td>phat_shop</td><td>Cấm trong luồng này</td><td>Không có nút xử phạt; chuyển chuyên trách</td></tr></tbody></table>';
-render();
-</script>
+        turn.pending = false;
+        if (state !== conversation || state.view !== role) return;
+        const keepFocus = document.activeElement === screen.querySelector('#composer input');
+        render();
+        if (keepFocus) screen.querySelector('#composer input').focus();
+      }
+      announcement.textContent = turn.reply;
+    });
+
+    document.addEventListener('click', (event) => {
+      const control = event.target.closest('button');
+      if (!control) return;
+      const scenario = scenarios[state.id];
+      let update = '';
+      if (control.dataset.case) {
+        if (control.dataset.case === state.id) return;
+        reset(control.dataset.case);
+        update = 'Đã chọn ca khác.';
+      } else {
+        switch (control.dataset.action) {
+          case 'reset': reset(state.id); update = 'Đã bắt đầu lại.'; break;
+          case 'compare': compareWithModel(); return;
+          case 'add-evidence':
+            update = state.submitted ? 'Đã bổ sung ảnh vào hồ sơ.' : 'Đã gửi hồ sơ kèm ảnh mẫu cho nhân viên.';
+            state.evidenceAdded = true;
+            state.submitted = true;
+            state.analysis = null;
+            break;
+          case 'remove-evidence': state.evidenceAdded = false; state.analysis = null; update = 'Đã gỡ ảnh bổ sung.'; break;
+          case 'undo-draft': state.draft = false; update = 'Đã hoàn tác bản nháp.'; break;
+          case 'make-draft': state.draft = true; update = 'Đã tạo bản nháp.'; break;
+          case 'submit':
+          case 'transfer': state.submitted = true; update = 'Hồ sơ đã tiếp nhận.'; break;
+          case 'undo-transfer': state.submitted = false; update = 'Đã hoàn tác chuyển hồ sơ.'; break;
+          case 'preview-report': state.confirming = true; break;
+          case 'send-report': state.submitted = true; state.confirming = false; update = caseStatus(); break;
+          case 'buyer':
+          case 'seller':
+          case 'staff':
+          case 'workflow': state.view = control.dataset.action; state.confirming = false; break;
+          case 'reply': state.replied = true; update = 'Shop đã gửi phản hồi.'; break;
+          case 'review': state.confirming = true; break;
+          case 'cancel': state.confirming = false; break;
+          case 'confirm': state.outcome = scenario.decision; state.confirming = false; update = outcomeCopy(); break;
+          default: return;
+        }
+      }
+      render();
+      announcement.textContent = update;
+      const selected = [...document.querySelectorAll('button')].find((button) =>
+        !button.disabled && (control.dataset.case ? button.dataset.case === control.dataset.case : button.dataset.action === control.dataset.action));
+      (selected || document.querySelector('#screen-title')).focus({ preventScroll: true });
+    });
+
+    reset('match');
+    render();
+  </script>
 </body>
 </html>
